@@ -11,10 +11,28 @@
 
   <!-- This line removes any default padding and style.
        You might only need one of these values set. -->
-  <style> body { background-color: #BBBBBB; padding: 0; display: flex; justify-content: center; align-items: center; margin: 0 auto; } </style>
+  <style> 
+    body {
+      background-color: #BBBBBB;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+    
+    .border {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-image: url("assets/Transparency_Test.png");
+    }
+  </style>
 </head>
 
 <body>
+    <div class="border"></div>
     <script language="javascript" type="text/javascript" src="WebArt_Ambulatory.js"></script>
 </body>
 </html>
