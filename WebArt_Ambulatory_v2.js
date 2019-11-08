@@ -1,14 +1,8 @@
-/*
-
- to-do:  add cursor
- add text tooltips
- add sound
- 
- */
-
 var wiping = false;
-var exploring = false;
 var goLeft = false;
+var debug = false;
+
+let song;
 
 var tab = [];
 var words = [];
@@ -17,7 +11,7 @@ var planets = [];
 
 var frame;
 
-var tracker = 0;
+var tracker;
 
 var font;
 
@@ -35,10 +29,15 @@ function preload() {
   //  let num = i + 1;
   //  tab[i] = loadImage('assets/tab' + num + '.png');
   //}
+  soundFormats('mp3', 'ogg');
+
+  song = loadSound('assets/gameOver.ogg');
 }
 
 function setup() {
-
+  tracker =  int(random(23)/2);
+  song.play();
+  song.loop();
   noStroke();
   createCanvas(512, 512);
   wipeColor = color(255);
@@ -63,52 +62,53 @@ function setup() {
   words[10] = "Those in kinship with they\nwho could not bring parts\nUnto themselves likewise were entreated\nto suffering caused by stewardship\nOf those within the walled\ngarden, yet all perished equally.";
   words[11] = "Here I laid in dormancy\nwithin the world, alone and\nWith the ability to consist\nwholly within my parts, laid\nAbout across the world in\npeace without agitation or exhaustion.";
 
-  symbols[0] = "apparatus\nof creation";
-  symbols[1] = "apparatus\nof time";
-  symbols[2] = "apparatus\nof combination";
-  symbols[3] = "apparatus\nof communication";
-  symbols[4] = "apparatus\nof information";
-  symbols[5] = "apparatus\nof observation";
-  symbols[6] = "apparatus\nof organized space";
-  symbols[7] = "apparatus\nof contemplation";
-  symbols[8] = "apparatus\nof supplication";
-  symbols[9] = "apparatus\nof segregation";
-  symbols[10] = "apparatus\nof hubris";
-  symbols[11] = "apparatus\nof non-being";
+  symbols[0] = "Apparatus\nof Creation";
+  symbols[1] = "Apparatus\nof Time";
+  symbols[2] = "Apparatus\nof Combination";
+  symbols[3] = "Apparatus\nof Communication";
+  symbols[4] = "Apparatus\nof Information";
+  symbols[5] = "Apparatus\nof Observation";
+  symbols[6] = "Apparatus\nof Organized Space";
+  symbols[7] = "Apparatus\nof Contemplation";
+  symbols[8] = "Apparatus\nof Supplication";
+  symbols[9] = "Apparatus\nof Segregation";
+  symbols[10] = "Apparatus\nof Hubris";
+  symbols[11] = "Apparatus\nof Non-Being";
 
-  planets[0] = "mars\nruler of aries";
-  planets[1] = "venus\nruler of taurus";
-  planets[2] = "mercury\nruler of gemini";
-  planets[3] = "the moon\nruler of cancer";
-  planets[4] = "the sun\nruler of leo";
-  planets[5] = "mercury\nruler of virgo";
-  planets[6] = "venus\nruler of libra";
-  planets[7] = "mars\nruler of scorpio";
-  planets[8] = "jupiter\nruler of sagittarius";
-  planets[9] = "saturn\nruler of capricorn";
-  planets[10] = "saturn\nruler of aquarius";
-  planets[11] = "jupiter\nruler of pisces";
+  planets[0] = "Mars\nRuler of Aries";
+  planets[1] = "Venus\nRuler of Taurus";
+  planets[2] = "Mercury\nRuler of Gemini";
+  planets[3] = "the Moon\nRuler of Cancer";
+  planets[4] = "the Sun\nRuler of Leo";
+  planets[5] = "Mercury\nRuler of Virgo";
+  planets[6] = "Venus\nRuler of Libra";
+  planets[7] = "Mars\nRuler of Scorpio";
+  planets[8] = "Jupiter\nRuler of Sagittarius";
+  planets[9] = "Saturn\nRuler of Capricorn";
+  planets[10] = "Saturn\nRuler of Aquarius";
+  planets[11] = "Jupiter\nRuler of Pisces";
 
 
   textFont(font);
   textSize(14);
-  textAlign(CENTER);
 }
 
 function draw() {
-  console.log("tracker in draw: " + tracker);
+  if (debug) {
+    console.log("tracker in draw: " + tracker);
+    console.log("x,y: " + mouseX + "," + mouseY);
+    console.log("tab: " + tracker / 2);
+  }
   if (tracker % 2 === 1) {
     // odd clicks - fade between
     wipeTab();
   } else if (tracker % 2 === 0) {
     hasWiped = false;
     drawTab(int(tracker / 2));
-    console.log("tab: " + tracker / 2);
   } else {
     console.log("yo");
   }
   image(frame, 0, 0, 512, 512);
-  console.log("x,y: " + mouseX + "," + mouseY);
 }
 
 function drawTab(i) {
@@ -142,16 +142,20 @@ function wipeTab() {
   image(tab[int(prevTracker / 2)], 0, 0, 512, 512);
 
   wipe = wipe + wipeStep;
-  console.log("wipe: " + wipe);
+
   fill(255, wipe);
   rect(0, 0, 512, 512);
-  console.log("wipeStep:" + wipeStep);
-  console.log("hasWiped: " + hasWiped);
-  console.log("wiping: " + wiping);
+  if (debug) {
+    console.log("wipe: " + wipe);
+    console.log("wipeStep:" + wipeStep);
+    console.log("hasWiped: " + hasWiped);
+    console.log("wiping: " + wiping);
+  }
 }
 
 function displayText(i) {
   textSize(14);
+  textAlign(CENTER);
 
   fill(0, fade);
   text(words[i], (width / 2) - 1, (height / 2 + height / 4) + 4);
@@ -163,7 +167,7 @@ function displayText(i) {
     fade += 2;
   }
 
-  textSize(10);
+  textSize(12);
   if ((mouseX > 220 && mouseX < 290) && (mouseY > 120 && mouseY < 190)) { // planet
     fill(0);
     text(planets[i], mouseX - 1, mouseY + 21);
@@ -177,20 +181,32 @@ function displayText(i) {
   } else {
     // draw no text
   }
+
+  if ((mouseX < 30 && mouseX > 0) && (mouseY < 30 && mouseY > 0)) {
+    textSize(10);
+    textAlign(LEFT);
+    let credits = "The Interactive Ambulatory, 2019\nby Alan Perry\nPart of an ongoing exploration of neofeudalism and neomedieval dreams.\nSound by Avgvst, CC-BY\nOrnamentation from the Black Hours and other medieval Books of Hours";
+    fill(0);
+    text(credits, 34, 42);
+    fill(255);
+    text(credits, 33, 41);
+  }
 }
 
 function mousePressed() {
+  if (debug) {
+    console.log("current tracker: " + tracker);
+  }
   fade = 0;
   prevTracker = tracker;
-  if (!wiping || !exploring) {
+  if (!wiping) {
     if (mouseX < width / 2) {
-      tracker--;
-      goLeft = true;
-    } else {
       tracker++;
       goLeft = false;
+    } else {
+      tracker--;
+      goLeft = true;
     }
-    console.log("current tracker: " + tracker);
   }
   if (tracker > 23) {
     tracker = 0;
