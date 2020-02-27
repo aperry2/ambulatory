@@ -8,47 +8,353 @@
   <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
   <script language="javascript" type="text/javascript" src="libraries/p5.dom.min.js"></script>
   <script language="javascript" type="text/javascript" src="libraries/p5.sound.min.js"></script>
-  <script language="javascript" type="text/javascript" src="WebArt_Ambulatory_v2.js"></script>
+  <script language="javascript" type="text/javascript" src="Virtual_Ambulatory_v3.js"></script>
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
 
   <!-- This line removes any default padding and style.
   You might only need one of these values set. -->
-  <style> 
-  body {
-background-color: 
-  #0000AA;
-padding: 
-  0;
-display: 
-  flex;
-justify-content: 
-  center;
-align-items: 
-  center;
-margin: 
-  0 auto;
-}
-
-.border {
-position: 
-  absolute;
-width: 
-  600px;
-height: 
-  600px;
-background-size: 
-  contain;
-top: 
-  50%;
-left: 
-  50%;
-transform: 
-  translate(-50%, -50%);
-}
+  <style>
+      @font-face {
+    font-family: oldschool;
+    src:       url(assets/1996.otf);
+    }
+    body {
+    background-color:  #0000AA;
+    display:    flex;
+    align-items:  center;
+    padding:          40;
+    justify-content: center;
+    margin:          0 auto;
+    
+    background-image: url("assets/background.jpg");
+    background-position: center bottom;
+    background-attachment: fixed;
+    }
+    div {
+    }
+    table {
+      border-spacing: 15px;
+    }
+    th {
+    font-family:       oldschool;
+    background-color:      #AAFFEE;
+    text-align:       center;
+    padding: 10;
+    }
+    p {
+      font-family: oldschool;      
+    }
+    #special {
+      color: #AAFFEE;
+    }
+    tr:hover {
+      background-color: #AAFFEE;
+    }
+    td {
+          font-family:       oldschool;
+    background-color:      #0088FF;
+    text-align:       center;
+    padding: 10;
+    }
+    h1 {
+    text-align:       center;
+    }
 </style>
+
   </head>
 
   <body>
-  <script language="javascript" type="text/javascript" src="WebArt_Ambulatory.js"></script>
+  <center>
+  <br>
+  <br>
+  <br>
+  <div id="sketch-holder">
+  </div><br>
+  <br>
+  <p id="special"> <- use left click to navigate  -> </p>
+  <br>
+  <br>
+  
+  <table>
+    <tr>
+  <th>
+  <p>Zodiacal Sign</p>
+  </th>
+  <th>
+  <p>Combinatorial Apparatus</p>
+  </th>
+  <th>
+  <p>Astrological Rulership</p> 
+  </th>
+  <th>
+  <p>The Somnambulist's Vision</p>
+  </th>
+  <th>
+  <p>Zodiacal Quality</p>
+  </th>
+  <th>
+  <p>Subject of Llull's Discourse</p>
+  </th>
+  </tr>
+  
+  <tr>
+  <td>
+  <p>Aries</p>
+  </td>
+  <td>
+  <p>The Apparatus of Creation</p>
+  </td>
+  <td>
+  <p>Mars</p> 
+  </td>
+  <td>
+  <p>Nietzsche's Madman</p>
+  </td>
+  <td>
+  <p>Cardinal</p>
+  </td>
+  <td>
+  <p>The Quality of Time</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Taurus</p>
+  </td>
+  <td>
+  <p>The Apparatus of Time</p>
+  </td>
+  <td>
+  <p>Venus</p> 
+  </td>
+  <td>
+  <p>The Temporal Shores</p>
+  </td>
+  <td>
+  <p>Fixed</p>
+  </td>
+  <td>
+  <p>The Accumulation of Time</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Gemini</p>
+  </td>
+  <td>
+  <p>The Apparatus of Combination</p>
+  </td>
+  <td>
+  <p>Mercury</p> 
+  </td>
+  <td>
+  <p>The Cloud of Ill Vapors</p>
+  </td>
+  <td>
+  <p>Mutable</p>
+  </td>
+  <td>
+  <p>The Temporal Receptions</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Cancer</p>
+  </td>
+  <td>
+  <p>The Apparatus of Communication</p>
+  </td>
+  <td>
+  <p>The Moon</p> 
+  </td>
+  <td>
+  <p>The Labors of Discourse</p>
+  </td>
+  <td>
+  <p>Cardinal</p>
+  </td>
+  <td>
+  <p>The Temporal Projections</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Leo</p>
+  </td>
+  <td>
+  <p>The Apparatus of Information</p>
+  </td>
+  <td>
+  <p>The Sun</p> 
+  </td>
+  <td>
+  <p>A Sudden Experience of Light</p>
+  </td>
+  <td>
+  <p>Fixed</p>
+  </td>
+  <td>
+  <p>Feudal Societies</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Virgo</p>
+  </td>
+  <td>
+  <p>The Apparatus of Observation</p>
+  </td>
+  <td>
+  <p>Mercury</p> 
+  </td>
+  <td>
+  <p>Watching the Watcher</p>
+  </td>
+  <td>
+  <p>Mutable</p>
+  </td>
+  <td>
+  <p>Feudal Religions</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Libra</p>
+  </td>
+  <td>
+  <p>The Apparatus of Organized Space</p>
+  </td>
+  <td>
+  <p>Venus</p> 
+  </td>
+  <td>
+  <p>The Twice-Faced Scribe</p>
+  </td>
+  <td>
+  <p>Cardinal</p>
+  </td>
+  <td>
+  <p>Feudal Corporations</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Scorpio</p>
+  </td>
+  <td>
+  <p>The Apparatus of Reflection</p>
+  </td>
+  <td>
+  <p>Mars</p> 
+  </td>
+  <td>
+  <p>Entrance to the Enclosed Garden</p>
+  </td>
+  <td>
+  <p>Fixed</p>
+  </td>
+  <td>
+  <p>Feudal Economies</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Sagittarius</p>
+  </td>
+  <td>
+  <p>The Apparatus of Supplication</p>
+  </td>
+  <td>
+  <p>Jupiter</p> 
+  </td>
+  <td>
+  <p>The Ritual Invocation</p>
+  </td>
+  <td>
+  <p>Mutable</p>
+  </td>
+  <td>
+  <p>Qualities of Human Souls</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Capricorn</p>
+  </td>
+  <td>
+  <p>The Apparatus of Segregation</p>
+  </td>
+  <td>
+  <p>Saturn</p> 
+  </td>
+  <td>
+  <p>The Games of the Leisurely</p>
+  </td>
+  <td>
+  <p>Cardinal</p>
+  </td>
+  <td>
+  <p>The Heirarchy of Souls</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Aquarius</p>
+  </td>
+  <td>
+  <p>The Apparatus of Hubris</p>
+  </td>
+  <td>
+  <p>Saturn</p> 
+  </td>
+  <td>
+  <p>The Cloud of Privilege</p>
+  </td>
+  <td>
+  <p>Fixed</p>
+  </td>
+  <td>
+  <p>Qualities of Posthuman Souls</p>
+  </td>
+  </tr>
+    
+  <tr>
+  <td>
+  <p>Pisces</p>
+  </td>
+  <td>
+  <p>The Apparatus of Non-Being</p>
+  </td>
+  <td>
+  <p>Jupiter</p> 
+  </td>
+  <td>
+  <p>The Night Fires</p>
+  </td>
+  <td>
+  <p>Mutable</p>
+  </td>
+  <td>
+  <p>The Media of Souls</p>
+  </td>
+  </tr>
+  
+  </table>
+  
+  <br>
+  <br>
+  <br>
+  
+  </center>
   </body>
   </html>
