@@ -187,7 +187,7 @@ function displayText(i) {
   if ((mouseX < 30 && mouseX > 0) && (mouseY < 30 && mouseY > 0)) {
     textSize(10);
     textAlign(LEFT);
-    let credits = "The Interactive Ambulatory, 2019\nby Alan Perry\nPart of an ongoing exploration of neofeudalism and neomedieval dreams.\nSound by Avgvst, CC-BY\nOrnamentation from the Black Hours and other medieval Books of Hours";
+    let credits = "The Virtual Ambulatory, 2019\nby Alan Perry\nPart of an ongoing exploration of neofeudalism and neomedieval dreams.\nSound by Avgvst, CC-BY\nOrnamentation from the Black Hours and other medieval Books of Hours";
     fill(0);
     text(credits, 34, 42);
     fill(255);
